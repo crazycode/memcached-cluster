@@ -28,6 +28,21 @@ return array (
         'hostname' => 'mc2',
         'port' => '11211',
       ),
+      'mc3:11211' =>
+      array (
+        'hostname' => 'mc3',
+        'port' => '11211',
+      ),
+      'mc4:11211' =>
+      array (
+        'hostname' => 'mc4',
+        'port' => '11211',
+      ),
+      'mc5:11211' =>
+      array (
+        'hostname' => 'mc5',
+        'port' => '11211',
+      ),
     ),
   ),
 );

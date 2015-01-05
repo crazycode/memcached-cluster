@@ -6,6 +6,9 @@ web:
   links:
     - mc1
     - mc2
+    - mc3
+    - mc4
+    - mc5
   volumes:
     - .:/code
 #twemproxy:
@@ -13,6 +16,21 @@ web:
 #  command: twemproxy
 mc1:
   image: crazycode/memcached
+  ports:
+    - "11211:11211"
 mc2:
   image: crazycode/memcached
-  
+  ports:
+    - "11212:11211"
+mc3:
+  image: crazycode/memcached
+  ports:
+    - "11213:11211"
+mc4:
+  image: crazycode/memcached
+  ports:
+    - "11214:11211"
+mc5:
+  image: crazycode/memcached
+  ports:
+    - "11215:11211"
