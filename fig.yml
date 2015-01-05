@@ -10,10 +10,20 @@ web:
     - mc4
     - mc5
   volumes:
-    - .:/code
-#twemproxy:
-#  build: twemproxy
-#  command: twemproxy
+    - ./memcachedadmin:/code
+twemproxy:
+  build: twemproxy
+  command: /twemproxy/src/nutcracker -c /config/nutcracker.yml
+  volumes:
+    - ./twemproxy:/config
+  ports:
+    - "22124:22124"
+  links:
+    - mc1
+    - mc2
+    - mc3
+    - mc4
+    - mc5
 mc1:
   image: crazycode/memcached
   ports:
