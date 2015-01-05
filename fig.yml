@@ -1,0 +1,18 @@
+web:
+  build: memcachedadmin
+  command: php -S 0.0.0.0:8001 -t /code
+  ports:
+    - "8001:8001"
+  links:
+    - mc1
+    - mc2
+  volumes:
+    - .:/code
+#twemproxy:
+#  build: twemproxy
+#  command: twemproxy
+mc1:
+  image: crazycode/memcached
+mc2:
+  image: crazycode/memcached
+  
