@@ -1,0 +1,24 @@
+{
+    "pools": {
+        "A": {
+            "servers": [
+                "mc1:11211",
+                "mc2:11211"
+            ]
+        },
+        "B": {
+            "servers": [
+                "mc3:11211",
+                "mc4:11211",
+                "mc5:11211"
+            ]
+        }
+    },
+    "route": {
+        "type": "AllFastestRoute",
+        "children": [
+            "PoolRoute|A",
+            "PoolRoute|B"
+        ]
+    }
+}

@@ -12,12 +12,25 @@ web:
   volumes:
     - ./memcachedadmin:/code
 twemproxy:
-  build: twemproxy
+  image: crazycode/twemproxy
   command: /twemproxy/src/nutcracker -c /config/nutcracker.yml
   volumes:
     - ./twemproxy:/config
   ports:
     - "22124:22124"
+  links:
+    - mc1
+    - mc2
+    - mc3
+    - mc4
+    - mc5
+mcrouter:
+  image: jamescarr/mcrouter:1.0
+  command: mcrouter -a /tmp -p 10211 -f /config/allfaster.json
+  volumes:
+    - ./mcrouter:/config
+  ports:
+    - "10211:10211"
   links:
     - mc1
     - mc2
