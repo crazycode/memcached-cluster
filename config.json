@@ -1,0 +1,54 @@
+{
+    "pools": {
+        "OLD": {
+            "servers": [
+                "192.168.21.97:11211"
+            ]
+        },
+        "A": {
+            "servers": [
+                "192.168.21.97:11212"
+            ]
+        },
+        "B": {
+            "servers": [
+                "192.168.21.97:11213"
+            ]
+        }
+    },
+    "named_handles": [
+        {
+            "type": "AllFastestRoute",
+            "name": "newpool",
+            "children": [
+                "PoolRoute|A",
+                "PoolRoute|B"
+            ]
+        },
+        {
+            "type": "L1L2CacheRoute",
+            "name": "l1l2",
+            "l1": "newpool",
+            "l2": "PoolRoute|OLD",
+            "upgradingL1Exptime": 0
+        },
+        {
+            "type": "AllFastestRoute",
+            "name": "allfast",
+            "children": [
+                "PoolRoute|OLD",
+                "PoolRoute|A",
+                "PoolRoute|B"
+            ]
+        }
+    ],
+    "route": {
+        "type": "OperationSelectorRoute",
+        "operation_policies": {
+            "add": "allfast",
+            "delete": "allfast",
+            "get": "l1l2",
+            "set": "allfast"
+        }
+    }
+}
